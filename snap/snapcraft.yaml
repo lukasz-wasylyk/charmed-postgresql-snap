@@ -229,6 +229,7 @@ parts:
     stage-packages:
       - postgresql=14+238
       - util-linux
+      - coreutils
       - pgbouncer=1.21.0-0ubuntu0.22.04.1~ppa1
       - pgbackrest=2.53-1ubuntu0.22.04.1~ppa1
       - prometheus-postgres-exporter=0.12.1-0ubuntu0.22.04.1~ppa1
