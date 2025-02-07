@@ -18,11 +18,11 @@ bootstrap:
     - CREATE USER rizone WITH SUPERUSER PASSWORD 'rizone';
     - CREATE DATABASE rizone OWNER rizone;
   dcs:
-    ttl: 30
-    loop_wait: 10
+    ttl: 5
+    loop_wait: 5
     retry_timeout: 10
     maximum_lag_on_failover: 1048576
-    check_timeline: true
+    check_timeline: false
     postgresql:
       use_pg_rewind: true
       remove_data_directory_on_rewind_failure: true
