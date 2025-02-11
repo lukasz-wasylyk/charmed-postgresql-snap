@@ -98,8 +98,14 @@ slots:
 apps:
   createdb:
     command: usr/bin/createdb
+    plugs:
+      - network
+      - network-bind
   createuser:
     command: usr/bin/createuser
+    plugs:
+      - network
+      - network-bind
   patroni:
     command: start-patroni.sh
     daemon: simple
