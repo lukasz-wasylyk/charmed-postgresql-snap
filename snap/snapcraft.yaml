@@ -100,7 +100,7 @@ apps:
     command: usr/bin/createdb
   createuser:
     command: usr/bin/createuser
-  postgres_standalone:
+  postgres-standalone:
     command: start_postgresql_standalone.sh
     daemon: simple
     install-mode: enable
