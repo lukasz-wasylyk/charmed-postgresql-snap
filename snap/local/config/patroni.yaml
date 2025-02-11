@@ -20,19 +20,16 @@ bootstrap:
     retry_timeout: 10
     maximum_lag_on_failover: 1048576
     check_timeline: true
+    nodes: 1
     postgresql:
       use_pg_rewind: true
       remove_data_directory_on_rewind_failure: true
       remove_data_directory_on_diverged_timelines: true
       use_slots: true
+        failover: null
       pg_hba:
-#        - local   all             all                                     peer
-#        - host    all             all             127.0.0.1/32            md5
         - host    all             all             0.0.0.0/0               md5
-#        - host    all             all             ::1/128                 md5
-#        - local   replication     all                                     peer
         - host    replication     all             127.0.0.1/32            md5
-#        - host    replication     all             ::1/128                 md5
 postgresql:
   listen: "*:5432"
   connect_address: 127.0.0.1:5432
@@ -50,3 +47,5 @@ postgresql:
       password: "pg-pass"
   parameters:
     unix_socket_directories: /tmp
+synchronous_mode: false
+
