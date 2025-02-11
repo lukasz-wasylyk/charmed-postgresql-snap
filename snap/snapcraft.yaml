@@ -100,10 +100,18 @@ apps:
     command: usr/bin/createdb
   createuser:
     command: usr/bin/createuser
+  postgres_standalone:
+    command: start_postgresql_standalone.sh
+    daemon: simple
+    install-mode: enable
+    restart-condition: always
+    plugs:
+      - network
+      - network-bind
   patroni:
     command: start-patroni.sh
     daemon: simple
-    install-mode: enable
+    install-mode: disable
     restart-condition: always
     environment:
       TCL_LIBRARY: $SNAP/usr/share/tcltk/tcl8.6
