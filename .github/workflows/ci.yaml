@@ -40,5 +40,9 @@ jobs:
         with:
           pattern: ${{ needs.build.outputs.artifact-prefix }}-*
           merge-multiple: true
+      - name: Installation check
+        run: |
+          sudo snap install ./*.snap --dangerous
+          sudo snap start charmed-postgresql
       - name: Run tests
         run: tox run -e smoke

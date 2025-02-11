@@ -100,6 +100,14 @@ apps:
     command: usr/bin/createdb
   createuser:
     command: usr/bin/createuser
+  postgres-standalone:
+    command: start_postgresql_standalone.sh
+    daemon: simple
+    install-mode: disable
+    restart-condition: always
+    plugs:
+      - network
+      - network-bind
   patroni:
     command: start-patroni.sh
     daemon: simple
@@ -182,14 +190,14 @@ apps:
   pgbackrest-service:
     command: start-pgbackrest.sh
     daemon: simple
-    install-mode: enable
+    install-mode: disable
     plugs:
       - network
       - network-bind
   pgbackrest-exporter:
     command: start-pgbackrest-exporter.sh
     daemon: simple
-    install-mode: enable
+    install-mode: disable
     plugs:
       - network
       - network-bind
@@ -205,7 +213,7 @@ apps:
   prometheus-postgres-exporter:
     command: start-exporter.sh
     daemon: simple
-    install-mode: enable
+    install-mode: disable
     plugs:
       - network
       - network-bind
@@ -229,6 +237,7 @@ parts:
     stage-packages:
       - postgresql=14+238
       - util-linux
+      - coreutils
       - pgbouncer=1.21.0-0ubuntu0.22.04.1~ppa1
       - pgbackrest=2.53-1ubuntu0.22.04.1~ppa1
       - prometheus-postgres-exporter=0.12.1-0ubuntu0.22.04.1~ppa1
