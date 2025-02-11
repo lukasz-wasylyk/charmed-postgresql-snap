@@ -34,6 +34,12 @@ echo "pg1-path=$SNAP_COMMON/var/lib/postgresql" >> $SNAP_DATA/etc/pgbackrest/pgb
 echo "pg1-user=snap_daemon" >> $SNAP_DATA/etc/pgbackrest/pgbackrest.conf
 #patroni config done
 
+
+export LOCPATH="${SNAP}"/usr/lib/locale
+export PGDATA=$SNAP_COMMON/data
+
+"${SNAP}/usr/bin/setpriv" --clear-groups --reuid 584788 --regid 584788 -- "${SNAP}/usr/lib/postgresql/14/bin/initdb" -U postgres -D "${PGDATA}"
+
 # hack 
 chmod -R 770 "$SNAP_COMMON"
 chmod -R 770 "$SNAP_DATA"
